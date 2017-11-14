@@ -737,7 +737,7 @@ if (not dead and
     not stunned and
     not whipping and 
     collision_point(x, y, oXStart, 0, 0) and
-    kUp and
+    kPayPressed and
     platformCharacterIs(ON_GROUND) and
     sprite_index != sPExit and sprite_index != sDamselExit and sprite_index != sTunnelExit)
 {
@@ -822,7 +822,7 @@ if (not dead and
     not stunned and
     not whipping and 
     collision_point(x, y, oExit, 0, 0) and
-    kUp and
+    kPayPressed and
     platformCharacterIs(ON_GROUND) and
     sprite_index != sPExit and sprite_index != sDamselExit and sprite_index != sTunnelExit)
 {
