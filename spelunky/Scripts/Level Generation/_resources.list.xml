@@ -15,6 +15,7 @@
   <resource name="scrRoomGenYeti" type="RESOURCE"/>
   <resource name="scrRoomGen4" type="RESOURCE"/>
   <resource name="scrRoomGen5" type="RESOURCE"/>
+  <resource name="scrRoomGenShop" type ="RESOURCE"/>
   <resource name="scrGetName" type="RESOURCE"/>
   <resource name="scrShopItemsGen" type="RESOURCE"/>
   <resource name="scrGenerateItem" type="RESOURCE"/>
