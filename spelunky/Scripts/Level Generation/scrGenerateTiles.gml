@@ -1,3 +1,9 @@
+//
+// scrGenerateTiles()
+//
+// Tile generation script which takes room strings as input. Created for the Spelunky Community Update Project.
+//
+
 strTemp = argument0;
 
 // Generate the tiles
