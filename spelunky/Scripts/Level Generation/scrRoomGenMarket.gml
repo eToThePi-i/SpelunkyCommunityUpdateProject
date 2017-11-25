@@ -111,12 +111,12 @@ else if (roomPath == 3)
 }
 else if (roomPath == 4 and x == 496) // shop
 {
-    strTemp = "0000000011.....b0AlK......bbbb..........1111111111111111111111111111111111111111";
+    strTemp = "0000000011.....b0alK......bbbb..........1111111111111111111111111111111111111111";
     shopType = "Ankh";
 }
 else if (roomPath == 4) // shop
 {
-    strTemp = "........................22......2l00l2..0.000000.00k000000k0000iiiiK00bbbbbbbbbb";
+    strTemp = "........................22......2l00l2..0.000000.00k000000k0000????K00bbbbbbbbbb";
     
     shopType = "";
     
@@ -141,7 +141,7 @@ else if (roomPath == 4) // shop
 }
 else if (roomPath == 5) // casino
 {
-    strTemp = "111111111111111111111111221111112000lK1101W0Q00b..0k00000+0.00000zz+q.bbbbbbbbbb";
+    strTemp = "111111111111111111111111221111112000lK1101W0Q00b..0k00000+0.00000uu+q.bbbbbbbbbb";
     shopType = "Craps";
 }
 else // drop
@@ -150,11 +150,11 @@ else // drop
     else n = rand(1,5);
     switch(n)
     {
-        case 1: { strTemp = "00G000000000H111100000G222200000G000000000G000000000G000002200000002111111202111"; break; }
-        case 2: { strTemp = "0000000G000001111H000002222G000000000G000000000G002200000G00112T0000001111202111"; break; }
-        case 3: { strTemp = "00000000G060000011H000000000G000000000G0G0000000G0H1122000G0G0000000G011100001H1"; break; }
-        case 4: { strTemp = "0000000G000001111H000002222G000000000G000000000G00000000000020000222221000111111"; break; }
-        case 5: { strTemp = "00G000000000H111100000G222200000G000000000G0000000000000000022222000021111110001"; break; }
+        case 1: { strTemp = "00H000000000=111100000H222200000H000000000H000000000H000002200000002111111202111"; break; }
+        case 2: { strTemp = "0000000H000001111=000002222H000000000H000000000H002200000H00112T0000001111202111"; break; }
+        case 3: { strTemp = "00000000H060000011=000000000H000000000H0H0000000H0=1122000H0H0000000H011100001=1"; break; }
+        case 4: { strTemp = "0000000H000001111=000002222H000000000H000000000H00000000000020000222221000111111"; break; }
+        case 5: { strTemp = "00H000000000=111100000H222200000H000000000H0000000000000000022222000021111110001"; break; }
         //
         case 6: { strTemp = "11111111111111111111120000002120000000020000000000022000022021120021121111001111"; break; }
     }
@@ -230,164 +230,4 @@ for (i = 1; i < 81; i += 1)
     }
 }
 
-// Generate the tiles
-for (j = 0; j < 8; j += 1)
-{
-    for (i = 1; i < 11; i += 1)
-    {
-        tile = string_char_at(strTemp, i+j*10);
-        xpos = x + (i-1)*16;
-        ypos = y + j*16;
-        if (tile == "1" and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            instance_create(xpos, ypos, oLush);
-        }
-        else if (tile == "2" and rand(1,2) == 1 and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            instance_create(xpos, ypos, oLush);
-        }
-        else if (tile == "3" and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            if (rand(1,2) == 1) instance_create(xpos, ypos, oWaterSwim);
-            else instance_create(xpos, ypos, oLush);
-        }
-        else if (tile == "L") instance_create(xpos, ypos, oVine);
-        else if (tile == "G") instance_create(xpos, ypos, oLadderOrange);
-        else if (tile == "H") instance_create(xpos, ypos, oLadderTop);
-        else if (tile == "s") instance_create(xpos, ypos, oSpikes);
-        else if (tile == "9")
-        {
-            block = instance_create(xpos, ypos+16, oLush);
-            if (scrGetRoomX(x) == global.startRoomX and scrGetRoomY(y) == global.startRoomY)
-                instance_create(xpos, ypos, oEntrance);
-            else
-            {
-                instance_create(xpos, ypos, oExit);
-                global.exitX = xpos;
-                global.exitY = ypos;
-                block.invincible = true;
-            }
-        }
-        else if (tile == "w")
-        {
-            instance_create(xpos, ypos, oWaterSwim);
-        }
-        else if (tile == "." and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            obj = instance_create(xpos, ypos, oLush);
-            obj.shopWall = true;
-        }
-        else if (tile == "+")
-        {
-            obj = instance_create(xpos, ypos, oSolid);
-            obj.sprite_index = sIceBlock;
-            obj.shopWall = true;
-        }
-        else if (tile == "q")
-        {
-            n = rand(1,6);
-            scrGenerateItem(xpos+8, ypos+8, 1);
-            obj.inDiceHouse = true;
-        }
-        else if (tile == "Q")
-        {
-            if (shopType == "Craps")
-            {
-                tile_add(bgDiceSign, 0, 0, 48, 32, xpos, ypos, 9004);
-            }
-        }
-        else if (tile == "W")
-        {
-            if (global.murderer or global.thiefLevel > 0)
-            {
-                if (global.isDamsel) tile_add(bgWanted, 32, 0, 32, 32, xpos, ypos, 9004);
-                else if (global.isTunnelMan) tile_add(bgWanted, 64, 0, 32, 32, xpos, ypos, 9004);
-                else tile_add(bgWanted, 0, 0, 32, 32, xpos, ypos, 9004);
-            }
-        }
-        else if (tile == "b")
-        {
-            obj = instance_create(xpos, ypos, oBrickSmooth);
-            obj.sprite_index = sLushSmooth;
-            obj.shopWall = true;
-        }
-        else if (tile == "l")
-        {
-            obj = instance_create(xpos, ypos, oLamp);
-        }
-        else if (tile == "K")
-        {
-            obj = instance_create(xpos, ypos, oShopkeeper);
-            obj.style = shopType;
-        }
-        else if (tile == "k")
-        {
-            obj = instance_create(xpos, ypos, oSign);
-            if (shopType == "General") obj.sprite_index = sSignGeneral;
-            else if (shopType == "Bomb") obj.sprite_index = sSignBomb;
-            else if (shopType == "Weapon") obj.sprite_index = sSignWeapon;
-            else if (shopType == "Clothing") obj.sprite_index = sSignClothing;
-            else if (shopType == "Rare") obj.sprite_index = sSignRare;
-            else if (shopType == "Craps") obj.sprite_index = sSignCraps;
-        }
-        else if (tile == "i")
-        {
-            scrShopItemsGen();
-        }
-        else if (tile == "A")
-        {
-            obj = instance_create(xpos+8, ypos+8, oAnkh);
-        }
-        else if (tile == "z")
-        {
-            instance_create(xpos+8, ypos+8, oDice);
-        }
-        else if (tile == "T")
-        {
-            instance_create(xpos, ypos, oTree);
-            n = 0;
-            tx = xpos;
-            ty = ypos-16;
-            b1 = false;
-            b2 = false;
-            for (m = 0; m < 5; m += 1)
-            {
-                if (rand(0,m) > 2)
-                {
-                    break;
-                }
-                else
-                {
-                    if (not collision_point(tx, ty-16, oSolid, 0, 0) and
-                        not collision_point(tx-16, ty-16, oSolid, 0, 0) and
-                        not collision_point(tx+16, ty-16, oSolid, 0, 0))                    
-                    {
-                        instance_create(tx, ty, oTree);
-                        if (m < 4)
-                        {
-                            if (rand(1,5) < 4 and not b1)
-                            {
-                                instance_create(tx+16, ty, oTreeBranch);
-                                b1 = true;
-                            }
-                            else if (b1) b1 = false;
-                            if (rand(1,5) < 4 and not b2)
-                            {
-                                instance_create(tx-16, ty, oTreeBranch);
-                                b2 = true;
-                            }
-                            else if (b2) b2 = false;
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                ty -= 16;
-            }
-            instance_create(tx-16, ty+16, oLeaves);
-            instance_create(tx+16, ty+16, oLeaves);
-        }
-    }
-}
+scrGenerateTiles(strTemp);

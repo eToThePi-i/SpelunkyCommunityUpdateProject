@@ -100,9 +100,9 @@ else if (roomPath == 0 and rand(1,4) > 1) // side room
         // idol
         case 12: { strTemp = "11CCCCCC11110000001111000000111D000000D1100000000100000000000000I000001111111111"; break; }
         // treasure vaults
-        case 13: { strTemp = "11ttttt0111111111011110ttttt11110111111111ttttt011111111101111cttttt111111111111"; break; }
-        case 14: { strTemp = "1111111111110ttttc11110111111111ttttt0111111111011110ttttt1111011111111100000011"; break; }
-        case 15: { strTemp = "111111111111111111111111cc1111110111101111c1111c111111cc111111111111111111111111"; break; }
+        case 13: { strTemp = "11$$$$$0111111111011110$$$$$11110111111111$$$$$011111111101111#$$$$$111111111111"; break; }
+        case 14: { strTemp = "1111111111110$$$$#11110111111111$$$$$0111111111011110$$$$$1111011111111100000011"; break; }
+        case 15: { strTemp = "111111111111111111111111##1111110111101111#1111#111111##111111111111111111111111"; break; }
         // altars
         case 16: { strTemp = "220000002200000000000000000000000000000000000000000000x0000002211112201111111111"; break; }
     }
@@ -118,16 +118,16 @@ else if (roomPath == 0 or roomPath == 1)
         case 2: { strTemp = "1000000000100r000000100000000010000000001100000000000000000000000000001111111111"; break; }
         case 3: { strTemp = "0000000001000r000001000000000100000000010000000011000000000000000000001111111111"; break; }
         case 4: { strTemp = "0000000001000r000001000000000100000000010000000011000022000000011110001111111111"; break; }
-        case 5: { strTemp = "110000001100L0000L0011Pr000P1111L0000L1111L0000L1102L0000L2000000000001111111111"; break; }
+        case 5: { strTemp = "110000001100L0000L0011=r000=1111L0000L1111L0000L1102L0000L2000000000001111111111"; break; }
         // hallways
         case 6: { strTemp = "11111111111111111111111111111111111111111111111111000000000000000000001111111111"; break; }
         case 7: { strTemp = "1000000001000r000000100000000110000000011111111111000000000000000000001111111111"; break; }
-        case 8: { strTemp = "120r000021000000000012000000211220LL02211111PP11110011LL11000000LL00001111111111"; break; }         
+        case 8: { strTemp = "120r000021000000000012000000211220LL02211111==11110011LL11000000LL00001111111111"; break; }         
         case 9: { strTemp = "11111111112400000042110111101112000000211111111111000000000000000000001111111111"; break; }         
         // lava
         case 10: { strTemp = "0000000000000000000000000000000000000000013wwww310013wwww31011133331111111111111"; break; }
-        case 11: { strTemp = "1000000001000r0000001000000001100000000111111111110000?0000000000000001111111111"; break; }         
-        case 12: { strTemp = "100000000100000000001000?0000110000000011111111111000000000000000000001111111111"; break; }         
+        case 11: { strTemp = "1000000001000r0000001000000001100000000111111111110000*0000000000000001111111111"; break; }         
+        case 12: { strTemp = "100000000100000000001000*0000110000000011111111111000000000000000000001111111111"; break; }         
     }
 }
 else if (roomPath == 3)
@@ -144,7 +144,7 @@ else if (roomPath == 3)
 }
 else if (roomPath == 4) // shop
 {
-    strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..Kiiii000bbbbbbbbbb";
+    strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..K????000bbbbbbbbbb";
     
     if (oGame.damsel) n = rand(1,6);
     else n = rand(1,7);
@@ -156,12 +156,12 @@ else if (roomPath == 4) // shop
         case 4: { shopType = "Rare"; break; }
         case 5: { shopType = "Clothing"; break; }
         case 6: { shopType = "Craps"; strTemp = "11111111111111111111111122111111Kl000211..bQ00W010.0+00000k0.q+uu00000bbbbbbbbbb"; break; }
-        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111111p000211...000W010...00000k0..K00A0000bbbbbbbbbb"; oGame.damsel = true; break; }
+        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..K00!0000bbbbbbbbbb"; oGame.damsel = true; break; }
     }   
 }
 else if (roomPath == 5) // shop
 {
-    strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...000iiiiK..bbbbbbbbbb";
+    strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...000????K..bbbbbbbbbb";
     
     if (oGame.damsel) n = rand(1,6);
     else n = rand(1,7);
@@ -173,7 +173,7 @@ else if (roomPath == 5) // shop
         case 4: { shopType = "Rare"; break; }
         case 5: { shopType = "Clothing"; break; }
         case 6: { shopType = "Craps"; strTemp = "111111111111111111111111221111112000lK1101W0Q00b..0k00000+0.00000uu+q.bbbbbbbbbb"; break; }
-        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111112000p11101W0000...0k00000...0000A00K..bbbbbbbbbb"; oGame.damsel = true; break; }
+        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...0000!00K..bbbbbbbbbb"; oGame.damsel = true; break; }
     }
 }
 else if (roomPath == 6) // Lady Xoc
@@ -293,247 +293,4 @@ for (i = 1; i < 81; i += 1)
     }
 }
 
-// Generate the tiles
-for (j = 0; j < 8; j += 1)
-{
-    for (i = 1; i < 11; i += 1)
-    {
-        tile = string_char_at(strTemp, i+j*10);
-        xpos = x + (i-1)*16;
-        ypos = y + j*16;
-        if (tile == "1" and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            if (rand(1,100) == 1) instance_create(xpos, ypos, oLush);
-            else if (rand(1,10) == 1) instance_create(xpos, ypos, oBlock);
-            else instance_create(xpos, ypos, oTemple);
-        }
-        else if (tile == "2" and rand(1,2) == 1 and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            if (rand(1,10) == 1) instance_create(xpos, ypos, oBlock);
-            else instance_create(xpos, ypos, oTemple);
-        }
-        else if (tile == "3" and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            if (rand(1,2) == 1) instance_create(xpos, ypos, oLava);
-            else instance_create(xpos, ypos, oTemple);
-        }
-        else if (tile == "R" and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            block = instance_create(xpos, ypos, oTemple);
-            with block { treasure = "Big Ruby"; }
-        }
-        else if (tile == "L") instance_create(xpos, ypos, oLadderOrange);
-        else if (tile == "P") instance_create(xpos, ypos, oLadderTop);
-        else if (tile == "4" and rand(1,4) == 1) instance_create(xpos, ypos, oPushBlock);
-        else if (tile == "9")
-        {
-            block = instance_create(xpos, ypos+16, oTemple);
-            if (scrGetRoomX(x) == global.startRoomX and scrGetRoomY(y) == global.startRoomY)
-                instance_create(xpos, ypos, oEntrance);
-            else
-            {
-                instance_create(xpos, ypos, oExit);
-                global.exitX = xpos;
-                global.exitY = ypos;
-                block.invincible = true;
-            }
-        }
-        else if (tile == "c")
-        {
-            if (rand(1,2) == 1) instance_create(xpos+8, ypos+8, oChest);
-            else instance_create(xpos+8, ypos+8, oCrate);
-        }
-        else if (tile == "t")
-        {
-            if (rand(1,120) == 1) instance_create(xpos+8, ypos+12, oRubyBig);
-            else if (rand(1,80) == 1) instance_create(xpos+8, ypos+12, oSapphireBig);
-            else if (rand(1,60) == 1) instance_create(xpos+8, ypos+12, oEmeraldBig);
-            else instance_create(xpos+8, ypos+8, oGoldBars);
-        }
-        else if (tile == "x")
-        {
-            instance_create(xpos, ypos, oSacAltarLeft);
-            instance_create(xpos+16, ypos, oSacAltarRight);
-            tile_add(bgKaliBody, 0, 0, 64, 64, xpos-16, ypos-48, 10001);
-            instance_create(xpos+16, ypos-80+16, oKaliHead);
-        }
-        else if (tile == "X")
-        {
-            for (l = 0; l < 6; l += 1)
-            {
-                for (k = 0; k < 5; k += 1)
-                {
-                    obj = instance_create(xpos+k*16, ypos+l*16, oXocBlock);
-                    if (k == 2 and l == 1) obj.treasure = "Diamond";
-                    if (k == 1 and l == 2) obj.treasure = "Sapphire";
-                    if (k == 3 and l == 2) obj.treasure = "Sapphire";
-                    if (k == 0 and l == 3) obj.treasure = "Emerald";
-                    if (k == 4 and l == 3) obj.treasure = "Emerald";
-                    if (k == 2 and l == 4) obj.treasure = "Ruby";
-                    tile_add(bgLadyXoc, k*16, l*16, 16, 16, xpos+k*16, ypos+l*16, 99);
-                }
-            }
-        }
-        else if (tile == "I")
-        {
-            instance_create(xpos+16, ypos+12, oGoldIdol);
-        }
-        else if (tile == ";")
-        {
-            obj = instance_create(xpos+8, ypos+8, oDamsel);
-            obj.cost = 0;
-            obj.forSale = false;
-            instance_create(xpos+16+8, ypos+12, oGoldIdol);
-        }
-        else if (tile == "B")
-        {
-            instance_create(xpos, ypos, oTrapBlock);
-        }
-        else if (tile == "C")
-        {
-            instance_create(xpos, ypos, oCeilingTrap);
-        }
-        else if (tile == "D")
-        {
-            instance_create(xpos, ypos, oDoor);
-            instance_create(xpos, ypos, oTempleFake);
-            instance_create(xpos, ypos+16, oTempleFake);
-        }
-        else if (tile == "A")
-        {
-            obj = instance_create(xpos+8, ypos+8, oDamsel);
-            obj.forSale = true;
-            obj.status = 5;
-        }
-        else if (tile == "?")
-        {
-            instance_create(xpos, ypos, oTombLord);
-        }
-        else if (tile == "." and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            obj = instance_create(xpos, ypos, oTemple);
-            obj.shopWall = true;
-        }
-        else if (tile == "Q")
-        {
-            if (shopType == "Craps")
-            {
-                tile_add(bgDiceSign, 0, 0, 48, 32, xpos, ypos, 9004);
-            }
-        }
-        else if (tile == "q")
-        {
-            n = rand(1,6);
-            scrGenerateItem(xpos+8, ypos+8, 1);
-            obj.inDiceHouse = true;
-        }
-        else if (tile == "+")
-        {
-            obj = instance_create(xpos, ypos, oSolid);
-            obj.sprite_index = sIceBlock;
-            obj.shopWall = true;
-        }
-        else if (tile == "W")
-        {
-            if (global.murderer or global.thiefLevel > 0)
-            {
-                if (global.isDamsel) tile_add(bgWanted, 32, 0, 32, 32, xpos, ypos, 9004);
-                else if (global.isTunnelMan) tile_add(bgWanted, 64, 0, 32, 32, xpos, ypos, 9004);
-                else tile_add(bgWanted, 0, 0, 32, 32, xpos, ypos, 9004);
-            }
-        }
-        else if (tile == "b")
-        {
-            obj = instance_create(xpos, ypos, oTemple);
-            obj.shopWall = true;
-        }
-        else if (tile == "l")
-        {
-            instance_create(xpos, ypos, oLamp);
-        }
-        else if (tile == "p")
-        {
-            instance_create(xpos, ypos, oLampRed);
-        }
-        else if (tile == "K")
-        {
-            obj = instance_create(xpos, ypos, oShopkeeper);
-            obj.style = shopType;
-        }
-        else if (tile == "k")
-        {
-            obj = instance_create(xpos, ypos, oSign);
-            if (shopType == "General") obj.sprite_index = sSignGeneral;
-            else if (shopType == "Bomb") obj.sprite_index = sSignBomb;
-            else if (shopType == "Weapon") obj.sprite_index = sSignWeapon;
-            else if (shopType == "Clothing") obj.sprite_index = sSignClothing;
-            else if (shopType == "Rare") obj.sprite_index = sSignRare;
-            else if (shopType == "Craps") obj.sprite_index = sSignCraps;
-            else if (shopType == "Kissing") obj.sprite_index = sSignKissing;
-        }
-        else if (tile == "i")
-        {
-            scrShopItemsGen();
-        }
-
-        else if (tile == "w")
-        {
-            instance_create(xpos, ypos, oLava);
-        }
-        else if (tile == "u")
-        {
-            instance_create(xpos+8, ypos+8, oDice);
-        }
-        else if (tile == "d")
-        {
-            instance_create(xpos, ypos, oLush);
-        }
-        else if (tile == "T")
-        {
-            instance_create(xpos, ypos, oTree);
-            n = 0;
-            tx = xpos;
-            ty = ypos-16;
-            b1 = false;
-            b2 = false;
-            for (m = 0; m < 5; m += 1)
-            {
-                if (rand(0,m) > 2)
-                {
-                    break;
-                }
-                else
-                {
-                    if (not collision_point(tx, ty-16, oSolid, 0, 0) and
-                        not collision_point(tx-16, ty-16, oSolid, 0, 0) and
-                        not collision_point(tx+16, ty-16, oSolid, 0, 0))                    
-                    {
-                        instance_create(tx, ty, oTree);
-                        if (m < 4)
-                        {
-                            if (rand(1,5) < 4 and not b1)
-                            {
-                                instance_create(tx+16, ty, oTreeBranch);
-                                b1 = true;
-                            }
-                            else if (b1) b1 = false;
-                            if (rand(1,5) < 4 and not b2)
-                            {
-                                instance_create(tx-16, ty, oTreeBranch);
-                                b2 = true;
-                            }
-                            else if (b2) b2 = false;
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                ty -= 16;
-            }
-            instance_create(tx-16, ty+16, oLeaves);
-            instance_create(tx+16, ty+16, oLeaves);
-        }
-    }
-}
+scrGenerateTiles(strTemp);

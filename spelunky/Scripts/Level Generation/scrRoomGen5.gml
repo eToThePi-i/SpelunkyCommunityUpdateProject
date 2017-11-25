@@ -104,12 +104,12 @@ for (i = 1; i < 81; i += 1)
     {
         switch(rand(1,8))
         {
-            case 1: { strObs1 = "0TTT0"; strObs2 = "21112"; strObs3 = "02220"; break; }
-            case 2: { strObs1 = "0000T"; strObs2 = "0TTT1"; strObs3 = "21111"; break; }
-            case 3: { strObs1 = "T0000"; strObs2 = "1TTT0"; strObs3 = "11112"; break; }
-            case 4: { strObs1 = "1TT00"; strObs2 = "11112"; strObs3 = "12200"; break; }
-            case 5: { strObs1 = "0TTT1"; strObs2 = "21111"; strObs3 = "00221"; break; }
-            case 6: { strObs1 = "21112"; strObs2 = "TTTTT"; strObs3 = "11111"; break; }
+            case 1: { strObs1 = "0$$$0"; strObs2 = "21112"; strObs3 = "02220"; break; }
+            case 2: { strObs1 = "0000$"; strObs2 = "0$$$1"; strObs3 = "21111"; break; }
+            case 3: { strObs1 = "$0000"; strObs2 = "1$$$0"; strObs3 = "11112"; break; }
+            case 4: { strObs1 = "1$$00"; strObs2 = "11112"; strObs3 = "12200"; break; }
+            case 5: { strObs1 = "0$$$1"; strObs2 = "21111"; strObs3 = "00221"; break; }
+            case 6: { strObs1 = "21112"; strObs2 = "$$$$$"; strObs3 = "11111"; break; }
         }
     }
     
@@ -126,60 +126,4 @@ for (i = 1; i < 81; i += 1)
     }
 }
 
-// Generate the tiles
-for (j = 0; j < 8; j += 1)
-{
-    for (i = 1; i < 11; i += 1)
-    {
-        tile = string_char_at(strTemp, i+j*10);
-        xpos = x + (i-1)*16;
-        ypos = y + j*16;
-        if (tile == "1" and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            if (rand(1,10) == 1) instance_create(xpos, ypos, oBlock);
-            else
-            {
-                instance_create(xpos, ypos, oTemple);
-            }
-        }
-        else if (tile == "2" and rand(1,2) == 1 and not collision_point(xpos, ypos, oSolid, 0, 0))
-        {
-            if (rand(1,10) == 1) instance_create(xpos, ypos, oBlock);
-            else
-            {
-                instance_create(xpos, ypos, oTemple);
-            }
-        }
-        else if (tile == "9")
-        {
-            if (scrGetRoomX(x) == global.startRoomX and scrGetRoomY(y) == global.startRoomY)
-                instance_create(xpos, ypos, oEntrance);
-            else
-            {
-                instance_create(xpos, ypos, oExit);
-                global.exitX = xpos;
-                global.exitY = ypos;
-            }
-            block = instance_create(xpos, ypos+16, oTemple);
-            block.invincible = true;
-        }
-        else if (tile == "T")
-        {
-            if (rand(1,15) == 1) instance_create(xpos+8, ypos+8, oChest);
-            else if (rand(1,6) == 1) instance_create(xpos+8, ypos+8, oGoldBars);
-            else if (rand(1,6) == 1) instance_create(xpos+8, ypos+12, oEmeraldBig);
-            else if (rand(1,8) == 1) instance_create(xpos+8, ypos+12, oSapphireBig);
-            else if (rand(1,10) == 1) instance_create(xpos+8, ypos+12, oRubyBig);
-            else if (rand(1,10) == 1) instance_create(xpos+8, ypos+8, oCrate);
-            else if (rand(1,10) == 1) instance_create(xpos, ypos, oBlock);
-            else
-            {
-                instance_create(xpos, ypos, oTemple);
-            }
-        }
-        else if (tile == "I")
-        {
-            instance_create(xpos+16, ypos, oGoldIdol);
-        }
-    }
-}
+scrGenerateTiles(strTemp);

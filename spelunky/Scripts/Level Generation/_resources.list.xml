@@ -18,4 +18,5 @@
   <resource name="scrGetName" type="RESOURCE"/>
   <resource name="scrShopItemsGen" type="RESOURCE"/>
   <resource name="scrGenerateItem" type="RESOURCE"/>
+  <resource name="scrGenerateTiles" type="RESOURCE"/>
 </resources>
