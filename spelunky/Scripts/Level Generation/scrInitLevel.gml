@@ -149,7 +149,9 @@ if (global.levelType == 1 and rand(1,global.probCemetary) == 1) global.cemetary 
 
 with oRoom
 {
-    if (global.levelType == 0) scrRoomGen();
+    roomPath = global.roomPath[scrGetRoomX(x), scrGetRoomY(y)];
+    if (not global.blackMarket and (roomPath == 4 or roomPath == 5)) scrRoomGenShop();
+    else if (global.levelType == 0) scrRoomGen();
     else if (global.levelType == 1)
     {
         if (global.blackMarket) scrRoomGenMarket();

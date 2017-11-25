@@ -157,36 +157,6 @@ else if (roomPath == 3)
         case 7: { strTemp = "0000000000006000000000000000000000000000013wwww310113wwww31111133331111111111111"; break; }
     }
 }
-else if (roomPath == 4) // shop
-{
-    strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..K????000bbbbbbbbbb";
-    
-    switch(rand(1,7))
-    {
-        case 1: { shopType = "General"; break; }
-        case 2: { shopType = "Bomb"; break; }
-        case 3: { shopType = "Weapon"; break; }
-        case 4: { shopType = "Rare"; break; }
-        case 5: { shopType = "Clothing"; break; }
-        case 6: { shopType = "Craps"; strTemp = "11111111111111111111111122111111Kl000211..bQ00W010.0+00000k0.q+uu00000bbbbbbbbbb"; break; }
-        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..K00!0000bbbbbbbbbb"; oGame.damsel = true; break; }
-    }   
-}
-else if (roomPath == 5) // shop
-{
-    strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...000????K..bbbbbbbbbb";
-        
-    switch(rand(1,7))
-    {
-        case 1: { shopType = "General"; break; }
-        case 2: { shopType = "Bomb"; break; }
-        case 3: { shopType = "Weapon"; break; }
-        case 4: { shopType = "Rare"; break; }
-        case 5: { shopType = "Clothing"; break; }
-        case 6: { shopType = "Craps"; strTemp = "111111111111111111111111221111112000lK1101W0Q00b..0k00000+0.00000uu+q.bbbbbbbbbb"; break; }
-        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...0000!00K..bbbbbbbbbb"; oGame.damsel = true; break; }
-    }
-}
 else if (roomPath == 7) // Lake Bottom
 {
     switch(rand(1,8))

@@ -146,39 +146,6 @@ else if (roomPath == 3) // main room
         case 9: { strTemp = "100000000111110011111111cc111111200002110000000000000000000011100001111111cc1111"; break; }
     }
 }
-else if (roomPath == 4) // shop
-{
-
-    strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..K????000bbbbbbbbbb";
-
-    switch(rand(1,7))
-    {
-        case 1: { shopType = "General"; break; }
-        case 2: { shopType = "Bomb"; break; }
-        case 3: { shopType = "Weapon"; break; }
-        case 4: { shopType = "Rare"; break; }
-        case 5: { shopType = "Clothing"; break; }
-        case 6: { shopType = "Craps"; strTemp = "11111111111111111111111122111111Kl000211..bQ00W010.0+00000k0.q+uu00000bbbbbbbbbb"; break; }
-        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..K00!0000bbbbbbbbbb"; oGame.damsel = true; break; }
-    }   
-}
-
-else if (roomPath == 5) // shop
-{
-
-    strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...000????K..bbbbbbbbbb";
-    
-    switch(rand(1,7))
-    {
-        case 1: { shopType = "General"; break; }
-        case 2: { shopType = "Bomb"; break; }
-        case 3: { shopType = "Weapon"; break; }
-        case 4: { shopType = "Rare"; break; }
-        case 5: { shopType = "Clothing"; break; }
-        case 6: { shopType = "Craps"; strTemp = "111111111111111111111111221111112000lK1101W0Q00b..0k00000+0.00000uu+q.bbbbbbbbbb"; break; }
-        case 7: { shopType = "Kissing"; strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...0000!00K..bbbbbbbbbb"; oGame.damsel = true; break; }
-    }
-}
 else if (roomPath == 8) // snake pit
 {
     strTemp = "111000011111s0000s11111200211111s0000s11111200211111s0000s11111200211111s0000s11";

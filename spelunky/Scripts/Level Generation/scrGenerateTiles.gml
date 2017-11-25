@@ -195,7 +195,7 @@ for (j = 0; j < 8; j += 1)
             {
                 instance_create(xpos, ypos, oAlienShip);
                 tile_add(bgAlienShip3, 0, 0, 16, 16, xpos, ypos, 9005);
-            }
+            }
         }
         else if (tile == "B")
         {
