@@ -71,59 +71,6 @@ else
     }
 }
 
-// Add obstacles
-
-for (i = 1; i < 81; i += 1)
-{
-    j = i;
-  
-    strObs1 = "00000";
-    strObs2 = "00000";
-    strObs3 = "00000";
-    tile = string_char_at(strTemp, i);
-    
-    if (tile == "8")
-    {
-        strObs1 = "00900"; strObs2 = "21112"; strObs3 = "21112";
-    }
-    else if (tile == "5") // ground
-    {
-        switch(rand(1,8))
-        {
-            case 1: { strObs1 = "00000"; strObs2 = "02220"; strObs3 = "21112"; break; }
-            case 2: { strObs1 = "00000"; strObs2 = "02020"; strObs3 = "21212"; break; }
-            case 3: { strObs1 = "11100"; strObs2 = "11110"; strObs3 = "11111"; break; }
-            case 4: { strObs1 = "00111"; strObs2 = "01111"; strObs3 = "11111"; break; }
-            case 5: { strObs1 = "21112"; strObs2 = "22222"; strObs3 = "00000"; break; }
-            case 6: { strObs1 = "00022"; strObs2 = "00011"; strObs3 = "00011"; break; }
-            case 7: { strObs1 = "22000"; strObs2 = "11000"; strObs3 = "11000"; break; }
-            case 8: { strObs1 = "00000"; strObs2 = "00000"; strObs3 = "00000"; break; }
-        }
-    }
-    else if (tile == "6") // air
-    {
-        switch(rand(1,8))
-        {
-            case 1: { strObs1 = "0$$$0"; strObs2 = "21112"; strObs3 = "02220"; break; }
-            case 2: { strObs1 = "0000$"; strObs2 = "0$$$1"; strObs3 = "21111"; break; }
-            case 3: { strObs1 = "$0000"; strObs2 = "1$$$0"; strObs3 = "11112"; break; }
-            case 4: { strObs1 = "1$$00"; strObs2 = "11112"; strObs3 = "12200"; break; }
-            case 5: { strObs1 = "0$$$1"; strObs2 = "21111"; strObs3 = "00221"; break; }
-            case 6: { strObs1 = "21112"; strObs2 = "$$$$$"; strObs3 = "11111"; break; }
-        }
-    }
-    
-    if (tile == "5" or tile == "6" or tile == "8")
-    {
-        strTemp = string_delete(strTemp, j, 5);
-        strTemp = string_insert(strObs1, strTemp, j);
-        j += 10;
-        strTemp = string_delete(strTemp, j, 5);
-        strTemp = string_insert(strObs2, strTemp, j);
-        j += 10;
-        strTemp = string_delete(strTemp, j, 5);
-        strTemp = string_insert(strObs3, strTemp, j);
-    }
-}
+strTemp = scrGenerateObstacles(strTemp);
 
 scrGenerateTiles(strTemp);
