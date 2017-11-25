@@ -47,7 +47,6 @@ strTemp = "000000000000000000000000000000000000000000000000000000000000000000000
 
 roomPath = global.roomPath[scrGetRoomX(x), scrGetRoomY(y)];
 roomPathAbove = -1;
-shopType = "General";
 if (scrGetRoomY(y) != 0) roomPathAbove = global.roomPath[scrGetRoomX(x), scrGetRoomY(y-128)];
 
 if (scrGetRoomX(x) == global.startRoomX and scrGetRoomY(y) == global.startRoomY) // start room
