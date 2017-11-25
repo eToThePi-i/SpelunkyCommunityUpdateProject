@@ -223,7 +223,7 @@ for (j = 0; j < 8; j += 1)
         }
         else if (tile == "C")
         {
-            else if (global.levelType == 2)
+            if (global.levelType == 2)
             {
                 tile = instance_create(xpos, ypos, oAlienShip);
                 with tile { sprite_index = sAlienFront; }
