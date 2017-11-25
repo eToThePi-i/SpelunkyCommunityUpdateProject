@@ -101,7 +101,7 @@ for (j = 0; j < 8; j += 1)
                     }
                 }
                 else if (global.levelType == 1) instance_create(xpos, ypos, oLush);
-                eelse if (global.levelType == 2)
+                else if (global.levelType == 2)
                 {
                     if(global.yetiLair)
                     {
