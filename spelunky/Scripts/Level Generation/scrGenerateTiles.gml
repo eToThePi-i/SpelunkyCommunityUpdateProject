@@ -432,7 +432,7 @@ for (j = 0; j < 8; j += 1)
             {
                 obj = instance_create(xpos, ypos, oBrickSmooth);
                 if (global.levelType == 1) obj.sprite_index = sLushSmooth;
-                else (global.levelType == 2) obj.sprite_index = sDarkSmooth;
+                else if (global.levelType == 2) obj.sprite_index = sDarkSmooth;
             }
             obj.shopWall = true;
         }
