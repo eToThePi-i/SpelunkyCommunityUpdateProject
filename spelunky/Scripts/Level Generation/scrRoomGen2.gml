@@ -52,7 +52,7 @@ if (scrGetRoomY(y) != 0) roomPathAbove = global.roomPath[scrGetRoomX(x), scrGetR
 if (roomPath == 0 and rand(1,3) <= 2) // side room
 {
     if (not oGame.altar and rand(1,12) == 1) n = 10;
-    else if (oGame.idol)  n = rand(1,8);
+    else if (oGame.idol) n = rand(1,8);
     else n = rand(1,9);
 
     switch(n)

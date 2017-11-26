@@ -48,20 +48,7 @@ if (global.currLevel == 5) global.levelType = 4;
 
 // global.levelType = 0;
 
-global.startRoomX = 0;
-global.startRoomY = 0;
-global.endRoomX = 0;
-global.endRoomY = 0;
 oGame.levelGen = false;
-
-// this is used to determine the path to the exit (generally no bombs required)
-for (i = 0; i < 4; i += 1)
-{
-    for (j = 0; j < 4; j += 1)
-    {
-        global.roomPath[i,j] = 0;
-    }
-}
 
 // side walls
 if (global.levelType == 4)
@@ -142,6 +129,8 @@ if (global.levelType == 3)
 }
 
 global.temp1 = global.gameStart;
+
+// this is used to determine the path to the exit (generally no bombs required)
 scrLevelGen();
 
 global.cemetary = false;
