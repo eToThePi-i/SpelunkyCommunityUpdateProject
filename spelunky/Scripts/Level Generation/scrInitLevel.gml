@@ -48,8 +48,6 @@ if (global.currLevel == 5) global.levelType = 4;
 
 // global.levelType = 0;
 
-oGame.levelGen = false;
-
 // side walls
 if (global.levelType == 4)
     k = 54;
@@ -232,8 +230,6 @@ if (global.graphicsHigh)
             tile_add(bgExtras, 32*rand(0,1), 0, 32, 32, 16*rand(1,42), 16*rand(1,33), 10002);
     }
 }
-
-oGame.levelGen = true;
 
 // generate angry shopkeeper at exit if murderer or thief
 if ((global.murderer or global.thiefLevel > 0) and isRealLevel())

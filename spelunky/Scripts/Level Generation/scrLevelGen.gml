@@ -22,12 +22,6 @@
     
 ***********************************************************************************/
 
-global.startRoomX = 0;
-global.startRoomY = 0;
-global.endRoomX = 0;
-global.endRoomY = 0;
-oGame.levelGen = false;
-
 for (i = 0; i < 4; i += 1)
 {
     for (j = 0; j < 4; j += 1)
@@ -45,6 +39,9 @@ prevY = 0;
 global.roomPath[roomX, roomY] = 1;
 noStartX = -1;
 n = rand(0,3);
+
+global.endRoomX = 0;
+global.endRoomY = 0;
 
 global.sacrificePit = false;
 global.snakePit = false;
