@@ -81,10 +81,8 @@ if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMark
 
 if (global.levelType == 3 and rand(1,global.probSacPit) == 1)
 {
-    while (n == roomX)
-    {
-        n = rand(0,3);
-    }
+    n = rand(0,2);
+    if (n == roomX) n = 3;
     
     for (i = 0; i < 4; i += 1)
     {
