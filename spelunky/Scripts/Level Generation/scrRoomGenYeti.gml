@@ -51,14 +51,8 @@ if (scrGetRoomY(y) != 0) roomPathAbove = global.roomPath[scrGetRoomX(x), scrGetR
 
 if (roomPath == 0 and rand(1,4) < 4) // side room
 {
-    if (oGame.idol or scrGetRoomY(y) == 3)
-        n = rand(1,2);
-    else
-    {
-        n = 1;
-        if (n == 10) oGame.idol = true;
-        // else n = rand(1,9);
-    }
+    if (oGame.idol or scrGetRoomY(y) == 3) n = rand(1,2);
+    else n = 1;
 
     switch(n)
     {
@@ -67,7 +61,7 @@ if (roomPath == 0 and rand(1,4) < 4) // side room
         // high walls
         case 2: { strTemp = "000000000011cccccc11120000002112002200211200000021120022002111ssssss111111111111"; break; }
         // idols
-        // case 10: { strTemp = "22000000220000B0000000000000000000000000000000000000000000000000I000001111A01111"; break; }
+        // case 10: { strTemp = "22000000220000B0000000000000000000000000000000000000000000000000I000001111A01111"; oGame.idol = true; break; }
     }
 }
 else if (roomPath == 0 or roomPath == 1) // main room
@@ -103,7 +97,6 @@ else if (roomPath == 3) // main room
 {
     switch(rand(1,9))
     {
-    
         // basic rooms
         case 1: { strTemp = "00000000000000000000000000000000000000000050000000000000000000000000001111111111"; break; }
         case 2: { strTemp = "00000000000000000000000000000000000000005000050000000000000000000000001111111111"; break; }
@@ -118,14 +111,8 @@ else if (roomPath == 3) // main room
         case 9: { strTemp = "100000000111110011111111cc111111200002110000000000000000000011100001111111cc1111"; break; }
     }
 }
-else if (roomPath == 8) // snake pit
-{
-    strTemp = "111000011111s0000s11111200211111s0000s11111200211111s0000s11111200211111s0000s11";
-}
-else if (roomPath == 9) // snake pit bottom
-{
-    strTemp = "111000011111s0000s1111100001111100~0001111~0110~11111~RR~11111111111111111111111";    
-}
+else if (roomPath == 8) strTemp = "111000011111s0000s11111200211111s0000s11111200211111s0000s11111200211111s0000s11"; // snake pit
+else if (roomPath == 9) strTemp = "111000011111s0000s1111100001111100~0001111~0110~11111~RR~11111111111111111111111";   // snake pit bottom
 else // drop
 {
     if (roomPath == 7) n = rand(4,12);

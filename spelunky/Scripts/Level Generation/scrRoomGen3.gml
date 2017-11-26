@@ -49,20 +49,9 @@ roomPath = global.roomPath[scrGetRoomX(x), scrGetRoomY(y)];
 
 if (roomPath == 0 and rand(1,2) == 1) // side room
 {
-    if (not oGame.altar and rand(1,12) == 1)
-    {
-        n = 10;
-        oGame.altar = true;
-    }
-    else if (oGame.idol)
-    {
-        n = rand(1,8);
-    }
-    else
-    {
-        n = rand(1,9);
-        if (n == 9) oGame.idol = true;
-    }
+    if (not oGame.altar and rand(1,12) == 1) n = 10;
+    else if (oGame.idol) n = rand(1,8);
+    else n = rand(1,9);
 
     switch(n)
     {
@@ -78,9 +67,9 @@ if (roomPath == 0 and rand(1,2) == 1) // side room
         case 7: { strTemp = "0jiiiiiij00jij00jij00jii0jiijj0jij0000000jij0jiijj0jij0jiij000000jiij00jjiiiiijj"; break; }
         case 8: { strTemp = "011iiii110000jjjj0000000ii00000000jj00000000ii00000000jj00000000ii00000002222000"; break; }
         // idol
-        case 9: { strTemp = "00000000000000I000000000cc00000000000000000000000000000000000000ss00000000110000"; break; }
+        case 9: { strTemp = "00000000000000I000000000cc00000000000000000000000000000000000000ss00000000110000"; break; oGame.idol = true; }
         // altars
-        case 10: { strTemp = "000000000000000000000000000000000000000000000000000000x0000002211112201111111111"; break; }
+        case 10: { strTemp = "000000000000000000000000000000000000000000000000000000x0000002211112201111111111"; break; oGame.altar = true; }
     }
 }
 else if ((roomPath == 0 or roomPath == 1 or roomPath == 2) and (rand(1,10) < 10))

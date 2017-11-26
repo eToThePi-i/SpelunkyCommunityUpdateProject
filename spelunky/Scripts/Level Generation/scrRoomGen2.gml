@@ -51,20 +51,9 @@ if (scrGetRoomY(y) != 0) roomPathAbove = global.roomPath[scrGetRoomX(x), scrGetR
 
 if (roomPath == 0 and rand(1,3) <= 2) // side room
 {
-    if (not oGame.altar and rand(1,12) == 1)
-    {
-        n = 10;
-        oGame.altar = true;
-    }
-    else if (oGame.idol)
-    {
-        n = rand(1,8);
-    }
-    else
-    {
-        n = rand(1,9);
-        if (n == 9) oGame.idol = true;
-    }
+    if (not oGame.altar and rand(1,12) == 1) n = 10;
+    else if (oGame.idol)  n = rand(1,8);
+    else n = rand(1,9);
 
     switch(n)
     {
@@ -83,10 +72,11 @@ if (roomPath == 0 and rand(1,3) <= 2) // side room
         {
             if (global.cemetary) strTemp = "ttttttttttttttttttttttp0S00pttttt0tt0tttP00000000Pttt0tt0tttttp0000ptt1111111111";
             else strTemp = "01000000100000I0000001BBBBBB10110000001111wwwwww1111wwwwww11113wwww3111111111111";
+            oGame.idol = true;
             break;
         }
         // altars
-        case 10: { strTemp = "220000002200000000000000000000000000000000000000000000x0000002211112201111111111"; break; }
+        case 10: { strTemp = "220000002200000000000000000000000000000000000000000000x0000002211112201111111111"; oGame.altar = true; break; }
     }
 }
 else if (roomPath == 0 or roomPath == 1)
@@ -146,10 +136,8 @@ else if (roomPath == 7) // Lake Bottom
 }
 else if (roomPath == 8) // Lake Top
 {
-    if (global.roomPath[scrGetRoomX(x), scrGetRoomY(y-128)] == 2)
-        n = rand(1,5);
-    else
-        n = rand(1,8);
+    if (global.roomPath[scrGetRoomX(x), scrGetRoomY(y-128)] == 2) n = rand(1,5);
+    else n = rand(1,8);
     switch(n)
     {
         case 1: { strTemp = "000000000000000000000001111000w,,vvvv,,wwwww,,wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"; break; }
