@@ -15,6 +15,8 @@
   <resource name="scrRoomGenYeti" type="RESOURCE"/>
   <resource name="scrRoomGen4" type="RESOURCE"/>
   <resource name="scrRoomGen5" type="RESOURCE"/>
+  <resource name="scrRoomGenEntrance" type ="RESOURCE"/>
+  <resource name="scrRoomGenExit" type ="RESOURCE"/>
   <resource name="scrRoomGenShop" type ="RESOURCE"/>
   <resource name="scrGenerateObstacles" type="RESOURCE"/>
   <resource name="scrGenerateTiles" type="RESOURCE"/>

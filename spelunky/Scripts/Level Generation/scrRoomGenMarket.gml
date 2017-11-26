@@ -49,32 +49,7 @@ roomPath = global.roomPath[scrGetRoomX(x), scrGetRoomY(y)];
 roomPathAbove = -1;
 if (scrGetRoomY(y) != 0) roomPathAbove = global.roomPath[scrGetRoomX(x), scrGetRoomY(y-128)];
 
-if (scrGetRoomX(x) == global.startRoomX and scrGetRoomY(y) == global.startRoomY) // start room
-{
-    if (roomPath == 2) n = rand(3,4);
-    else n = rand(1,2);
-    switch(n)
-    {
-        case 1: { strTemp = "60000600000000000000000000000000000000000008000000000000000000000000001111111111"; break; }
-        case 2: { strTemp = "11111111112222222222000000000000000000000008000000000000000000000000001111111111"; break; }
-        // hole
-        case 3: { strTemp = "60000600000000000000000000000000000000000008000000000000000000000000002021111120"; break; }
-        case 4: { strTemp = "11111111112222222222000000000000000000000008000000000000000000000000002021111120"; break; }
-    }
-}
-else if (scrGetRoomX(x) == global.endRoomX and scrGetRoomY(y) == global.endRoomY) // end room
-{
-    if (roomPathAbove == 2) n = rand(1,2);
-    else n = rand(3,4);
-    switch(n)
-    {
-        case 1: { strTemp = "00000000000000000000000000000000000000000008000000000000000000000000001111111111"; break; }
-        case 2: { strTemp = "00000000006000060000000000000000000000000008000000000000000000000000001111111111"; break; }
-        case 3: { strTemp = "60000600000000000000000000000000000000000008000000000000000000000000001111111111"; break; }
-        case 4: { strTemp = "11111111112222222222000000000000000000000008000000000000000000000000001111111111"; break; }
-    }
-}
-else if (roomPath == 1)
+if (roomPath == 1)
 {
     switch(rand(1,8))
     {

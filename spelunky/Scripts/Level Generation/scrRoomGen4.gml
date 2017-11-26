@@ -46,16 +46,8 @@ The string representing a room or obstacle must be laid out unbroken:
 strTemp = "00000000000000000000000000000000000000000000000000000000000000000000000000000000";
 
 roomPath = global.roomPath[scrGetRoomX(x), scrGetRoomY(y)];
-if (scrGetRoomX(x) == global.startRoomX and scrGetRoomY(y) == global.startRoomY) // start room
-{
-    if (roomPath == 2) strTemp = "00000000000000000000000000000000000000000008000000000000000000000000002000000002"; // hole
-    else strTemp = "00000000000000000000000000000000000000000008000000000000000000000000001111111111";
-}
-else if (scrGetRoomX(x) == global.endRoomX and scrGetRoomY(y) == global.endRoomY) // end room
-{
-    strTemp = "00000000000000000000000000000000000000000008000000000000000000000000000000000000";
-}
-else if (roomPath == 0 and rand(1,4) > 1) // side room
+
+if (roomPath == 0 and rand(1,4) > 1) // side room
 {
     if (global.cityOfGold)
     {

@@ -150,7 +150,10 @@ if (global.levelType == 1 and rand(1,global.probCemetary) == 1) global.cemetary 
 with oRoom
 {
     roomPath = global.roomPath[scrGetRoomX(x), scrGetRoomY(y)];
-    if (not global.blackMarket and (roomPath == 4 or roomPath == 5)) scrRoomGenShop();
+    if (global.levelType == 4) scrRoomGen5();
+    else if (scrGetRoomX(x) == global.startRoomX and scrGetRoomY(y) == global.startRoomY) scrRoomGenEntrance();
+    else if (scrGetRoomX(x) == global.endRoomX and scrGetRoomY(y) == global.endRoomY) scrRoomGenExit();
+    else if (not global.blackMarket and (roomPath == 4 or roomPath == 5)) scrRoomGenShop();
     else if (global.levelType == 0) scrRoomGen();
     else if (global.levelType == 1)
     {
@@ -163,7 +166,6 @@ with oRoom
         else scrRoomGen3();
     }
     else if (global.levelType == 3) scrRoomGen4();
-    else scrRoomGen5();
 }
 
 global.darkLevel = false;

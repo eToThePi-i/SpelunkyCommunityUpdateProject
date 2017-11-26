@@ -242,7 +242,7 @@ for (i = 1; i < 81; i += 1)
     {
         j += 10;
         strTemp = string_delete(strTemp, j, 5);
-        strTemp = string_insert(strObs4, stremp, j);
+        strTemp = string_insert(strObs4, strTemp, j);
     }
 }
 
