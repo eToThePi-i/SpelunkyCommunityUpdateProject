@@ -9,14 +9,14 @@ strTemp = argument0;
 for (i = 1; i < 81; i += 1)
 {
     j = i;
-  
+    
     strObs1 = "00000";
     strObs2 = "00000";
     strObs3 = "00000";
     strObs4 = "00000";
     tile = string_char_at(strTemp, i);
     
-    if (tile == "8")
+    if (tile == "8") // entrance/exit
     {
         if (global.levelType == 0 or global.levelType == 2)
         {
@@ -49,7 +49,6 @@ for (i = 1; i < 81; i += 1)
             n = 0;
             if (global.levelType == 0 or global.yetiLair) n = rand(2,17);
             else if (global.levelType == 2) n = rand(1,15);
-            else if (global.levelType == 3) ;
             switch(n)
             {
                 case 1: { strObs1 = "00000"; strObs2 = "11111"; strObs3 = "00000"; break; }
@@ -70,7 +69,7 @@ for (i = 1; i < 81; i += 1)
                 case 16: { strObs1 = "00000"; strObs2 = "11110"; strObs3 = "00000"; break; }
                 case 17: { strObs1 = "00000"; strObs2 = "01111"; strObs3 = "00000"; break; }
             }
-            if (global.levelType == 2 and not global.yetiLair) strObs3 = str_replace_all(strObs3,'7','0');
+            if (global.levelType == 2 and not global.yetiLair) strObs3 = string_replace_all(strObs3,'7','0');
         }
         else if (global.levelType == 1)
         {
@@ -167,7 +166,7 @@ for (i = 1; i < 81; i += 1)
                 case 4: { strObs1 = "0jij0"; strObs2 = "0jij0"; strObs3 = "0jij0"; break; }
             }
         }
-        else if (global.levelType == 4)
+        else
         {
             switch(rand(1,8))
             {
@@ -222,6 +221,10 @@ for (i = 1; i < 81; i += 1)
             case 9: { strObs1 = "0000"; strObs2 = "0220"; strObs3 = "2112"; break; }
             case 10: { strObs1 = "0000"; strObs2 = "2002"; strObs3 = "1221"; break; }
         }
+    }
+    else
+    {
+        continue;
     }
     
     width = 5;
