@@ -34,14 +34,13 @@ global.startRoomX = rand(0,3);
 global.startRoomY = 0;
 roomX = global.startRoomX;
 roomY = 0;
-prevX = global.startRoomX;
-prevY = 0;
 global.roomPath[roomX, roomY] = 1;
 noStartX = -1;
 n = rand(0,3);
 
 global.endRoomX = 0;
 global.endRoomY = 0;
+direction = 0;
 
 global.sacrificePit = false;
 global.snakePit = false;
@@ -84,12 +83,11 @@ if (global.levelType == 3 and rand(1,global.probSacPit) == 1)
     n = rand(0,2);
     if (n == roomX) n = 3;
     
-    for (i = 0; i < 4; i += 1)
-    {
-        if (i == 0) global.roomPath[n, i] = 7;
-        else if (i == 3) global.roomPath[n, i] = 9;
-        else global.roomPath[n, i] = 8;
-    }
+    global.roomPath[n, 0] = 7;
+    global.roomPath[n, 1] = 8;
+    global.roomPath[n, 2] = 8;
+    global.roomPath[n, 3] = 9;
+    
     global.sacrificePit = true;
     oGame.idol = true;
     oGame.damsel = true;
@@ -97,36 +95,39 @@ if (global.levelType == 3 and rand(1,global.probSacPit) == 1)
 
 while (roomY < 4)
 {
-    d = false;
-    if (roomX == prevX)
+    down = false;
+    if (direction == 0)
     {
-        if (roomX == 0) n = rand(3,5); // right
-        else if (roomX == 3) n = rand(5,7); // left
-        else n = rand(1,5);
+        if (roomX == 0) direction = 1;
+        else if (roomX == 3) direction = -1;
     }
-    else if (roomX > prevX)
-    {
-        if (roomX == 3) n = 5;
-        else n = rand(3,5); // right
-    }
+    if (direction != 0 and rand(1,3) == 1) down = true;
     else
     {
-        if (roomX == 0) n = 5;
-        else n = rand(5,7); // left
+        n = rand(1,5);
+        if (n == 3) down = true;
+        else if (n < 3) direction = -1;
+        else direction = 1;
     }
-    prevX = roomX;
+    if (direction == 1)
+    {
+        roomX += 1;
+        if (roomX == 3) down = true;
+    }
+    else if (direction = -1)
+    {
+        roomX -= 1;
+        if (roomX == 0) down = true;
+    }
     
-    if (n < 3 or n > 5) roomX -= 1; // move left
-    else if (n == 3 or n == 4) roomX += 1; // move right
-    else // move down
+    if (down)
     {
         roomY += 1;
-        d = true;
+        direction = 0;
         if (roomY < 4)
         {
             global.roomPath[roomX, roomY-1] = 2;
             global.roomPath[roomX, roomY] = 3;
-            d = true;
         }
         else
         {
@@ -135,7 +136,7 @@ while (roomY < 4)
         }
     }
     
-    if (not d) global.roomPath[roomX, roomY] = 1;
+    if (not down) global.roomPath[roomX, roomY] = 1;
 }
 
 // City of Gold
@@ -154,33 +155,13 @@ if (global.levelType == 0)
             if (global.roomPath[i,j] == 0 and global.roomPath[i,j+1] == 0 and global.roomPath[i,j+2] == 0 and rand(1,global.probSnakePit) == 1)
             {
                 global.roomPath[i,j] = 7; // top of pit
-                if (true)
+                global.roomPath[i,j+1] = 8;
+                if (j == 0 and global.roomPath[i,j+3] == 0)
                 {
-                    if (global.roomPath[i,j+2] == 0)
-                    {
-                        global.roomPath[i,j+1] = 8;
-                        if (j == 0)
-                        {
-                            if (global.roomPath[i,j+3] == 0)
-                            {
-                                global.roomPath[i,j+2] = 8; // middle of pit
-                                global.roomPath[i,j+3] = 9; // bottom of pit
-                            }
-                            else
-                            {
-                                global.roomPath[i,j+2] = 9;
-                            }
-                        }
-                        else
-                        {
-                            global.roomPath[i,j+2] = 9;
-                        }
-                    }
+                    global.roomPath[i,j+2] = 8; // middle of pit
+                    global.roomPath[i,j+3] = 9; // bottom of pit
                 }
-                else
-                {
-                    global.roomPath[i,j+1] = 9;
-                }
+                else global.roomPath[i,j+2] = 9;
                 global.snakePit = true;
                 i = 99;
                 j = 99;
@@ -207,11 +188,10 @@ if (global.lake)
     global.roomPath[1,4] = 7;
     global.roomPath[2,4] = 7;
     global.roomPath[3,4] = 7;
-    n = rand(0,3);
-    while (n == global.endRoomX)
-    {
-        n = rand(0,3);
-    }
+    
+    n = rand(0,2);
+    if (n == global.endRoomX) n = 3;
+    
     global.roomPath[n,4] = 9;
 }
 
@@ -254,30 +234,22 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
     for (j = 0; j < 4; j += 1)
     {
         global.roomPoss[j,k] = 0;
-        //j = rand(0,3);
-        //k = rand(0,3);
         if (global.roomPath[j,k] == 0)
         {
             if (j < 3)
             {
                 if (global.roomPath[j+1,k] == 1 or global.roomPath[j+1,k] == 2)
                 {
-                    //global.roomPath[j,k] = 4;
                     global.roomPoss[j,k] = 4;
                     i += 1;
-                    //global.shop = true;
-                    //break;
                 }
             }
             else if (j > 0)
             {
                 if (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2)
                 {
-                    //global.roomPath[j,k] = 5;
                     global.roomPoss[j,k] = 5;
                     i += 1;
-                    //global.shop = true;
-                    //break;
                 }
             }
         }
