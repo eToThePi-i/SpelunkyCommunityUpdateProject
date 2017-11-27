@@ -143,9 +143,6 @@ while (roomY < 4)
 if (global.cityOfGold) global.roomPath[rand(0,3), 2] = 6;
 
 // snake pit
-sX1 = 0;
-sX2 = 0;
-// global.probSnakePit = 1;
 if (global.levelType == 0)
 {
     for (j = 0; j < 2; j += 1)
@@ -163,9 +160,8 @@ if (global.levelType == 0)
                 }
                 else global.roomPath[i,j+2] = 9;
                 global.snakePit = true;
-                i = 99;
-                j = 99;
-                break;
+                i = 4;
+                j = 2;
             }
         }
     }
@@ -231,48 +227,42 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
     i = 0;
     for (k = 0; k < 4; k += 1)
     {
-    for (j = 0; j < 4; j += 1)
-    {
-        global.roomPoss[j,k] = 0;
-        if (global.roomPath[j,k] == 0)
+        for (j = 0; j < 4; j += 1)
         {
-            if (j < 3)
+            global.roomPoss[j,k] = 0;
+            if (global.roomPath[j,k] == 0)
             {
-                if (global.roomPath[j+1,k] == 1 or global.roomPath[j+1,k] == 2)
+                if (j < 3 and (global.roomPath[j+1,k] == 1 or global.roomPath[j+1,k] == 2))
                 {
                     global.roomPoss[j,k] = 4;
                     i += 1;
                 }
-            }
-            else if (j > 0)
-            {
-                if (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2)
+                else if (j > 0 and (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2))
                 {
                     global.roomPoss[j,k] = 5;
                     i += 1;
                 }
             }
         }
-    }}
-    
+    }
     if (i > 0) {
-    n = rand(0,i-1);
-    for (k = 0; k < 4; k += 1)
-    {
-        for (j = 0; j < 4; j += 1)
+        n = rand(1,i);
+        for (k = 0; k < 4; k += 1)
         {
-            if (global.roomPoss[j,k] != 0)
+            for (j = 0; j < 4; j += 1)
             {
-                if (n == 0)
+                if (global.roomPoss[j,k] != 0)
                 {
-                    global.roomPath[j,k] = global.roomPoss[j,k];
-                    global.shop = true;
-                    j = 4;
-                    k = 4;
-                    break;
+                    if (n == 1)
+                    {
+                        global.roomPath[j,k] = global.roomPoss[j,k];
+                        global.shop = true;
+                        j = 4;
+                        k = 4;
+                    }
+                    else n -= 1;
                 }
-                else n -= 1;
             }
         }
-    }}
+    }
 }
