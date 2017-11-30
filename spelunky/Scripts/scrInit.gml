@@ -58,9 +58,9 @@ global.joyFlareVal = 4;
 global.joyPayVal = 6;
 global.joyStartVal = 10;
 
-file = file_text_open_read("settings.cfg");
-if (file)
+if (file_exists("settings.cfg"))
 {
+    file = file_text_open_read("settings.cfg");
     str = file_text_read_string(file);
     if (str == "0") global.fullscreen = false;
     file_text_readln(file);
@@ -87,9 +87,9 @@ if (global.musicVol < 0) global.musicVol = 0;
 if (global.soundVol > 17) global.soundVol = 17;
 if (global.soundVol < 0) global.soundVol = 0;
 
-file = file_text_open_read("keys.cfg");
-if (file)
+if (file_exists("keys.cfg"))
 {
+    file_text_open_read("keys.cfg")
     global.keyUpVal = real(file_text_read_string(file));
     file_text_readln(file);
     global.keyDownVal = real(file_text_read_string(file));
