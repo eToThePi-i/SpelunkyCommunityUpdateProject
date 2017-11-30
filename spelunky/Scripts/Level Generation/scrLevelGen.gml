@@ -49,11 +49,10 @@ global.yetiLair = false;
 
 // Black Market
 global.blackMarket = false;
-//if (global.levelType == 1)
-
 if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMarket)
 {
     global.blackMarket = true;
+    global.madeBlackMarket = true;
     global.startRoomX = 0;
     global.startRoomY = 0;
     global.endRoomX = 3;
@@ -74,7 +73,6 @@ if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMark
     global.roomPath[3, 1] = 2;
     global.roomPath[3, 2] = 4;
     global.roomPath[3, 3] = 3;
-    global.madeBlackMarket = true;
     return 0;
 }
 
@@ -101,7 +99,10 @@ while (roomY < 4)
         if (roomX == 0) direction = 1;
         else if (roomX == 3) direction = -1;
     }
-    if (direction != 0 and rand(1,3) == 1) down = true;
+    if (direction != 0)
+    {
+        if (rand(1,3) == 1) down = true;
+    }
     else
     {
         n = rand(1,5);
@@ -109,17 +110,19 @@ while (roomY < 4)
         else if (n < 3) direction = -1;
         else direction = 1;
     }
-    if (direction == 1)
+    if (not down)
     {
-        roomX += 1;
-        if (roomX == 3) down = true;
+        if (direction == 1)
+        {
+            roomX += 1;
+            if (roomX == 3) down = true;
+        }
+        else if (direction == -1)
+        {
+            roomX -= 1;
+            if (roomX == 0) down = true;
+        }
     }
-    else if (direction = -1)
-    {
-        roomX -= 1;
-        if (roomX == 0) down = true;
-    }
-    
     if (down)
     {
         roomY += 1;
@@ -160,6 +163,7 @@ if (global.levelType == 0)
                 }
                 else global.roomPath[i,j+2] = 9;
                 global.snakePit = true;
+                //SCUP - The following two lines are a hack for breaking out of both for() loops early, as "break" only breaks out of the inner one.
                 i = 4;
                 j = 2;
             }
@@ -194,6 +198,7 @@ if (global.lake)
 
 if (global.levelType == 2)
 {
+    //SCUP - This looks like an unintentional consequence, a "bug", of not generating alien ships and yeti lairs until after the Moai level has appeared.
     if (not global.madeMoai) // Moai
     {
         if (global.currLevel == 9 and rand(1,4) == 1) global.madeMoai = true;
@@ -232,15 +237,21 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
             global.roomPoss[j,k] = 0;
             if (global.roomPath[j,k] == 0)
             {
-                if (j < 3 and (global.roomPath[j+1,k] == 1 or global.roomPath[j+1,k] == 2))
+                if (j < 3)
                 {
-                    global.roomPoss[j,k] = 4;
-                    i += 1;
+                    if (global.roomPath[j+1,k] == 1 or global.roomPath[j+1,k] == 2)
+                    {
+                        global.roomPoss[j,k] = 4;
+                        i += 1;
+                    }
                 }
-                else if (j > 0 and (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2))
+                if (j > 0)
                 {
-                    global.roomPoss[j,k] = 5;
-                    i += 1;
+                    if (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2)
+                    {
+                        global.roomPoss[j,k] = 5;
+                        i += 1;
+                    }
                 }
             }
         }
@@ -257,6 +268,7 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
                     {
                         global.roomPath[j,k] = global.roomPoss[j,k];
                         global.shop = true;
+                        //SCUP - The following two lines are a hack for breaking out of both for() loops early, as "break" only breaks out of the inner one.
                         j = 4;
                         k = 4;
                     }
