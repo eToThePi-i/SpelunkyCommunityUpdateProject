@@ -21,12 +21,12 @@
     
 ***********************************************************************************/
 
-global.levelType = 0;
 //global.currLevel = 16;
-if (global.currLevel > 4 and global.currLevel < 9) global.levelType = 1;
-if (global.currLevel > 8 and global.currLevel < 13) global.levelType = 2;
-if (global.currLevel > 12 and global.currLevel < 16) global.levelType = 3;
-if (global.currLevel == 16) global.levelType = 4;
+if (global.currLevel <= 4) global.levelType = 0;
+else if (global.currLevel <= 8) global.levelType = 1;
+else if (global.currLevel <= 12) global.levelType = 2;
+else if (global.currLevel <= 15) global.levelType = 3;
+else global.levelType = 4;
 
 if (global.currLevel <= 1 or
     global.currLevel == 5 or
