@@ -169,17 +169,13 @@ if (global.blackMarket) global.darkLevel = false;
 global.genUdjatEye = false;
 if (not global.madeUdjatEye)
 {
-    if (global.currLevel == 2 and rand(1,3) == 1) global.genUdjatEye = true;
-    else if (global.currLevel == 3 and rand(1,2) == 1) global.genUdjatEye = true;
-    else if (global.currLevel == 4) global.genUdjatEye = true;
+    if (global.currLevel >= 2 and rand(1,5 - global.currLevel) == 1) global.genUdjatEye = true;
 }
 
 global.genMarketEntrance = false;
 if (not global.madeMarketEntrance)
 {
-    if (global.currLevel == 5 and rand(1,3) == 1) global.genMarketEntrance = true;
-    else if (global.currLevel == 6 and rand(1,2) == 1) global.genMarketEntrance = true;
-    else if (global.currLevel == 7) global.genMarketEntrance = true;
+    if (global.currLevel >= 5 and rand(1,8 - global.currLevel) == 1) global.genMarketEntrance = true;
 }
 
 ////////////////////////////

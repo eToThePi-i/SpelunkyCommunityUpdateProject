@@ -183,15 +183,10 @@ else if (global.lake)
 }
 else if (global.levelType == 2)
 {
-    //SCUP - This looks like an unintentional consequence, a "bug", of not generating alien ships and yeti lairs until after the Moai level has appeared.
-    if (not global.madeMoai) // Moai
+    if (not global.madeMoai and rand(1,13 - global.currLevel) == 1) // Moai
     {
-        if (global.currLevel == 9 and rand(1,4) == 1) global.madeMoai = true;
-        else if (global.currLevel == 10 and rand(1,3) == 1) global.madeMoai = true;
-        else if (global.currLevel == 11 and rand(1,2) == 1) global.madeMoai = true;
-        else if (global.currLevel == 12) global.madeMoai = true;
-        
-        if (global.madeMoai) global.roomPath[rand(0,3), rand(1,2)] = 6;
+        global.madeMoai = true;
+        global.roomPath[rand(0,3), rand(1,2)] = 6;
     }
     else if (rand(1,global.probAlien) == 1) // alien craft
     {
