@@ -46,9 +46,8 @@ global.sacrificePit = false;
 global.snakePit = false;
 global.alienCraft = false;
 global.yetiLair = false;
-
-// Black Market
 global.blackMarket = false;
+
 if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMarket)
 {
     global.blackMarket = true;
@@ -197,7 +196,7 @@ else if (global.levelType == 2)
             if (rand(1,2) == 1) alien -= 1;
             else yeti -= 1;
         }
-        if (alien == 1) // alien craft
+        if (alien == 1)
         {
             k = rand(0,2);
             j = rand(1,2);
@@ -206,10 +205,7 @@ else if (global.levelType == 2)
             global.roomPath[3,j] = 9
             global.alienCraft = true;
         }
-        else if (yeti == 1) // yeti
-        {
-            global.yetiLair = true;
-        }
+        else if (yeti == 1) global.yetiLair = true;
     }
 }
 else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
@@ -225,7 +221,7 @@ else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
     }
     if (len > 0)
     {
-        n = sacPossX[rand(0, len)];
+        n = sacPossX[rand(0, len-1)];
         global.roomPath[n, 0] = 7;
         global.roomPath[n, 1] = 8;
         global.roomPath[n, 2] = 8;
@@ -272,7 +268,7 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
         }
     }
     if (len > 0) {
-        n = rand(0,len);
+        n = rand(0, len-1);
         global.roomPath[shopX[n],shopY[n]] = shopPath[shopX[n],shopY[n]];
         global.shop = true;
     }
