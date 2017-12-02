@@ -73,7 +73,7 @@ if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMark
     global.roomPath[3, 1] = 2;
     global.roomPath[3, 2] = 4;
     global.roomPath[3, 3] = 3;
-    return 0;
+    return ;
 }
 
 while (roomY < 4)
@@ -132,25 +132,36 @@ if (global.cityOfGold) global.roomPath[rand(0,3), 2] = 6;
 
 if (global.levelType == 0)
 {
-    for (j = 0; j < 2; j += 1)
+    int len = 0;
+    for (i = 0; i < 4; i += 1)
     {
-        for (i = 0; i < 4; i += 1)
+        if (global.roomPath[i,1] == 0 and global.roomPath[i,2] == 0 and (global.roomPath[i,0] or global.roomPath[i,3]))
         {
-            if (global.roomPath[i,j] == 0 and global.roomPath[i,j+1] == 0 and global.roomPath[i,j+2] == 0 and rand(1,global.probSnakePit) == 1)
+            snakePitX[len] = i;
+            len += 1;
+        }
+    }
+    if (len > 0)
+    {
+        n = rand(1,global.probSnakePit);
+        if (n <= len)
+        {
+            n = snakePitX[n];
+            if (global.roomPath[n,0] == 0)
             {
-                global.roomPath[i,j] = 7; // top of pit
-                global.roomPath[i,j+1] = 8;
-                if (j == 0 and global.roomPath[i,j+3] == 0)
-                {
-                    global.roomPath[i,j+2] = 8; // middle of pit
-                    global.roomPath[i,j+3] = 9; // bottom of pit
-                }
-                else global.roomPath[i,j+2] = 9;
-                global.snakePit = true;
-                //SCUP - The following two lines are a hack for breaking out of both for() loops early, as "break" only breaks out of the inner one.
-                i = 4;
-                j = 2;
+                global.roomPath[n,0] = 7;
+                global.roomPath[n,1] = 8;
             }
+            else global.roomPath[n,1] = 8;
+            
+            if (global.roomPath[n,3] == 0) 
+            {
+                global.roomPath[n,2] = 8;
+                global.roomPath[n,3] = 9;
+            }
+            else global.roomPath[n,2] = 9;
+            
+            global.snakePit = true;
         }
     }
 }
@@ -206,14 +217,13 @@ else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
     {
         if(global.roomPath[i,1] == 0 and global.roomPath[i,2] == 0 and global.roomPath[i,3] == 0 and global.roomPath[i,4] == 0)
         {
-            global.sacPossX[len] == i;
+            sacPossX[len] == i;
             len += 1;
         }
     }
-    
     if (len > 0)
     {
-        n = global.sacPossX[rand(0, len)];
+        n = sacPossX[rand(0, len)];
         global.roomPath[n, 0] = 7;
         global.roomPath[n, 1] = 8;
         global.roomPath[n, 2] = 8;
