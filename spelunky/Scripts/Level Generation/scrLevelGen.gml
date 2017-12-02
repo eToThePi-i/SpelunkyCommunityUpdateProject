@@ -250,7 +250,9 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
                 {
                     if (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2)
                     {
-                        global.roomPoss[j,k] = 5;
+                        shopX[len] = j;
+                        shopY[len] = k;
+                        shopPath[j,k] = 5;
                         len += 1;
                     }
                 }
