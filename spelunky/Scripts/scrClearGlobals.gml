@@ -55,8 +55,8 @@ global.probDarkLevel = 12; // 12
 global.probSnakePit = 8;   // 8
 global.probCemetary = 10;  // 10
 global.probLake = 10;      // 10
-global.probYetiLair = 6;   // 6
-global.probAlien = 10;     // 10
+global.probYetiLair = 12;   // 6 - has been decreased to 12 to balance the increase in frequency. (Spelunky Community Update Project)
+global.probAlien = 20;     // 10 - has been decreased to 20 to balance the increase in frequency. (Spelunky Community Update Project)
 global.probSacPit = 8;     // 8
 
 // player

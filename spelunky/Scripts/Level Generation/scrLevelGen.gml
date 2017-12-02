@@ -188,21 +188,28 @@ else if (global.levelType == 2)
         global.madeMoai = true;
         global.roomPath[rand(0,3), rand(1,2)] = 6;
     }
-    else if (rand(1,global.probAlien) == 1) // alien craft
+    else
     {
-        k = rand(0,2);
-        j = rand(1,2);
-        for (i = k; i < 4; i += 1)
+        alien = rand(1, global.probAlien);
+        yeti = rand(1, global.probYetiLair);
+        if (n == 1 and m == 1)
         {
-            if (i == k) global.roomPath[i,j] = 7;
-            else if (i == 3) global.roomPath[i,j] = 9;
-            else global.roomPath[i,j] = 8;
+            if (rand(1,2) == 1) alien -= 1;
+            else yeti -= 1;
         }
-        global.alienCraft = true;
-    }
-    else if (not global.alienCraft and rand(1,global.probYetiLair) == 1) // yeti
-    {
-        global.yetiLair = true;
+        if (alien == 1) // alien craft
+        {
+            k = rand(0,2);
+            j = rand(1,2);
+            global.roomPath[k,j] = 7;
+            for (i = k + 1; i < 3; i += 1) global.roomPath[i,j] = 8;
+            global.roomPath[3,j] = 9
+            global.alienCraft = true;
+        }
+        else if (yeti == 1) // yeti
+        {
+            global.yetiLair = true;
+        }
     }
 }
 else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
