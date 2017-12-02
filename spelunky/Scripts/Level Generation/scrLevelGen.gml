@@ -76,21 +76,6 @@ if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMark
     return 0;
 }
 
-if (global.levelType == 3 and rand(1,global.probSacPit) == 1)
-{
-    n = rand(0,2);
-    if (n == roomX) n = 3;
-    
-    global.roomPath[n, 0] = 7;
-    global.roomPath[n, 1] = 8;
-    global.roomPath[n, 2] = 8;
-    global.roomPath[n, 3] = 9;
-    
-    global.sacrificePit = true;
-    oGame.idol = true;
-    oGame.damsel = true;
-}
-
 while (roomY < 4)
 {
     down = false;
@@ -145,7 +130,6 @@ while (roomY < 4)
 // City of Gold
 if (global.cityOfGold) global.roomPath[rand(0,3), 2] = 6;
 
-// snake pit
 if (global.levelType == 0)
 {
     for (j = 0; j < 2; j += 1)
@@ -170,15 +154,7 @@ if (global.levelType == 0)
         }
     }
 }
-
-global.roomPath[0,4] = 0;
-global.roomPath[1,4] = 0;
-global.roomPath[2,4] = 0;
-global.roomPath[3,4] = 0;
-
-//  Lake
-//global.lake = false;
-if (global.lake)
+else if (global.lake)
 {
     global.roomPath[0,3] = 8;
     global.roomPath[1,3] = 8;
@@ -194,9 +170,7 @@ if (global.lake)
     
     global.roomPath[n,4] = 9;
 }
-
-
-if (global.levelType == 2)
+else if (global.levelType == 2)
 {
     //SCUP - This looks like an unintentional consequence, a "bug", of not generating alien ships and yeti lairs until after the Moai level has appeared.
     if (not global.madeMoai) // Moai
@@ -223,6 +197,31 @@ if (global.levelType == 2)
     else if (not global.alienCraft and rand(1,global.probYetiLair) == 1) // yeti
     {
         global.yetiLair = true;
+    }
+}
+else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
+{
+    len = 0;
+    for (i = 0; i < 4; i += 1)
+    {
+        if(global.roomPath[i,1] == 0 and global.roomPath[i,2] == 0 and global.roomPath[i,3] == 0 and global.roomPath[i,4] == 0)
+        {
+            global.sacPossX[len] == i;
+            len += 1;
+        }
+    }
+    
+    if (len > 0)
+    {
+        n = global.sacPossX[rand(0, len)];
+        global.roomPath[n, 0] = 7;
+        global.roomPath[n, 1] = 8;
+        global.roomPath[n, 2] = 8;
+        global.roomPath[n, 3] = 9;
+        
+        global.sacrificePit = true;
+        oGame.idol = true;
+        oGame.damsel = true;
     }
 }
 
