@@ -228,7 +228,7 @@ else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
 // shop
 if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBlackMarket)
 {
-    i = 0;
+    len = 0;
     for (k = 0; k < 4; k += 1)
     {
         for (j = 0; j < 4; j += 1)
@@ -240,8 +240,10 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
                 {
                     if (global.roomPath[j+1,k] == 1 or global.roomPath[j+1,k] == 2)
                     {
-                        global.roomPoss[j,k] = 4;
-                        i += 1;
+                        shopX[len] = j;
+                        shopY[len] = k;
+                        shopPath[j,k] = 4;
+                        len += 1;
                     }
                 }
                 if (j > 0)
@@ -249,31 +251,15 @@ if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBl
                     if (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2)
                     {
                         global.roomPoss[j,k] = 5;
-                        i += 1;
+                        len += 1;
                     }
                 }
             }
         }
     }
-    if (i > 0) {
-        n = rand(1,i);
-        for (k = 0; k < 4; k += 1)
-        {
-            for (j = 0; j < 4; j += 1)
-            {
-                if (global.roomPoss[j,k] != 0)
-                {
-                    if (n == 1)
-                    {
-                        global.roomPath[j,k] = global.roomPoss[j,k];
-                        global.shop = true;
-                        //SCUP - The following two lines are a hack for breaking out of both for() loops early, as "break" only breaks out of the inner one.
-                        j = 4;
-                        k = 4;
-                    }
-                    else n -= 1;
-                }
-            }
-        }
+    if (len > 0) {
+        n = rand(0,len);
+        global.roomPath[shopX[n],shopY[n]] = shopPath[shopX[n],shopY[n]];
+        global.shop = true;
     }
 }
