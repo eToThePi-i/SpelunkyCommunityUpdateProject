@@ -24,7 +24,7 @@
 
 for (i = 0; i < 4; i += 1)
 {
-    for (j = 0; j < 4; j += 1)
+    for (j = 0; j < 5; j += 1)
     {
         global.roomPath[i,j] = 0;
     }
@@ -73,7 +73,7 @@ if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMark
     global.roomPath[3, 1] = 2;
     global.roomPath[3, 2] = 4;
     global.roomPath[3, 3] = 3;
-    return ;
+    return 0;
 }
 
 while (roomY < 4)
@@ -132,7 +132,7 @@ if (global.cityOfGold) global.roomPath[rand(0,3), 2] = 6;
 
 if (global.levelType == 0)
 {
-    int len = 0;
+    len = 0;
     for (i = 0; i < 4; i += 1)
     {
         if (global.roomPath[i,1] == 0 and global.roomPath[i,2] == 0 and (global.roomPath[i,0] or global.roomPath[i,3]))
@@ -219,7 +219,7 @@ else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
     {
         if(global.roomPath[i,1] == 0 and global.roomPath[i,2] == 0 and global.roomPath[i,3] == 0 and global.roomPath[i,4] == 0)
         {
-            sacPossX[len] == i;
+            sacPossX[len] = i;
             len += 1;
         }
     }

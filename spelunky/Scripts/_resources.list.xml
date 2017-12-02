@@ -21,4 +21,6 @@
   <resource name="scrGetJoy" type="RESOURCE"/>
   <resource name="scrDrawHUD" type="RESOURCE"/>
   <resource name="rand" type="RESOURCE"/>
+  <resource name="string_replace_at" type="RESOURCE"/>
+  <resource name="string_reverse" type="RESOURCE"/>
 </resources>

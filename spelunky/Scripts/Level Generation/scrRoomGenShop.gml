@@ -12,6 +12,7 @@ if (roomPath == 4) strTemp = "111111111111111111111111221111111l000211...000W010
 else strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...000????K..bbbbbbbbbb";
 if (oGame.damsel) n = rand(1,6);
 else n = rand(1,7);
+n = 6;
 switch(n)
 {
     case 1: { shopType = "General"; break; }
@@ -31,7 +32,7 @@ switch(n)
         shopType = "Kissing";
         if (roomPath == 4) strTemp = "111111111111111111111111221111111l000211...000W010...00000k0..K00!0000bbbbbbbbbb";
         else strTemp = "111111111111111111111111221111112000l11101W0000...0k00000...0000!00K..bbbbbbbbbb";
-        oGame.damsel = true; 
+        oGame.damsel = true;
         break;
     }
 }

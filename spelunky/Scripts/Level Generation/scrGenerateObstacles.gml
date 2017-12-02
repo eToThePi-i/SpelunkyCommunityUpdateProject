@@ -8,8 +8,6 @@ strTemp = argument0;
 
 for (i = 1; i < 81; i += 1)
 {
-    j = i;
-    
     strObs1 = "00000";
     strObs2 = "00000";
     strObs3 = "00000";
@@ -227,23 +225,10 @@ for (i = 1; i < 81; i += 1)
         continue;
     }
     
-    width = 5;
-    if (tile == "F") width = 3;
-    else if (tile == "r") width = 4
-    strTemp = string_delete(strTemp, j, width);
-    strTemp = string_insert(strObs1, strTemp, j);
-    j += 10;
-    strTemp = string_delete(strTemp, j, width);
-    strTemp = string_insert(strObs2, strTemp, j);
-    j += 10;
-    strTemp = string_delete(strTemp, j, width);
-    strTemp = string_insert(strObs3, strTemp, j);
-    if (tile == "V")
-    {
-        j += 10;
-        strTemp = string_delete(strTemp, j, 5);
-        strTemp = string_insert(strObs4, strTemp, j);
-    }
+    strTemp = string_replace_at(strTemp, strObs1, i);
+    strTemp = string_replace_at(strTemp, strObs2, i+10);
+    strTemp = string_replace_at(strTemp, strObs3, i+20);
+    if (tile == "V") strTemp = string_replace_at(strTemp, strObs4,i+30);
 }
 
 return strTemp;
