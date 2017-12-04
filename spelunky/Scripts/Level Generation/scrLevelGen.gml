@@ -22,25 +22,13 @@
     
 ***********************************************************************************/
 
-for (i = 0; i < 4; i += 1)
+for (y = 0; y < 5; y += 1)
 {
-    for (j = 0; j < 5; j += 1)
+    for (x = 0; x < 4; x += 1)
     {
-        global.roomPath[i,j] = 0;
+        global.roomPath[x,y] = 0;
     }
 }
-
-global.startRoomX = rand(0,3);
-global.startRoomY = 0;
-roomX = global.startRoomX;
-roomY = 0;
-global.roomPath[roomX, roomY] = 1;
-noStartX = -1;
-n = rand(0,3);
-
-global.endRoomX = 0;
-global.endRoomY = 0;
-direction = 0;
 
 global.sacrificePit = false;
 global.snakePit = false;
@@ -75,55 +63,56 @@ if (global.levelType == 1 and not global.madeBlackMarket and global.genBlackMark
     return 0;
 }
 
-while (roomY < 4)
+global.startRoomX = rand(0,3);
+global.startRoomY = 0;
+roomX = global.startRoomX;
+roomY = 0;
+global.roomPath[roomX, roomY] = 1;
+
+for (roomY = 0; roomY < 4; roomY += 1)
 {
-    down = false;
-    if (direction == 0)
+    switch (roomX)
     {
-        if (roomX == 0) direction = 1;
-        else if (roomX == 3) direction = -1;
-    }
-    if (direction != 0)
-    {
-        if (rand(1,3) == 1) down = true;
-    }
-    else
-    {
-        n = rand(1,5);
-        if (n == 3) down = true;
-        else if (n < 3) direction = -1;
-        else direction = 1;
-    }
-    if (not down)
-    {
-        if (direction == 1)
+        case 0: case 3:
         {
-            roomX += 1;
-            if (roomX == 3) down = true;
+            n = rand(1,27);
+            if (n <= 9) dropX = roomX;
+            else if (n <= 15) dropX = abs(1 - roomX);
+            else if (n <= 19) dropX = abs(2 - roomX);
+            else dropX = 3 - roomX;
+            break;
         }
-        else if (direction == -1)
+        case 1: case 2:
         {
-            roomX -= 1;
-            if (roomX == 0) down = true;
+            n = rand(1,15);
+            if (n <= 6) dropX = (roomX - 1) * 3;
+            else if (n <= 9) dropX = roomX;
+            else if (n <= 11) dropX = 3 - roomX;
+            else dropX = (roomX - 2) * -3;
         }
     }
-    if (down)
+    if(roomX != dropX)
     {
-        roomY += 1;
-        direction = 0;
-        if (roomY < 4)
+        if (roomX > dropX)
         {
-            global.roomPath[roomX, roomY-1] = 2;
-            global.roomPath[roomX, roomY] = 3;
+            for(x = roomX - 1; x > dropX; x -= 1) roomPath[x,roomY] = 1;
         }
         else
         {
-            global.endRoomX = roomX;
-            global.endRoomY = roomY-1;
+            for(x = roomX + 1; x < dropX; x += 1) roomPath[x,roomY] = 1;
         }
     }
-    
-    if (not down) global.roomPath[roomX, roomY] = 1;
+    roomX = dropX;
+    if (roomY < 3)
+    {
+        global.roomPath[roomX, roomY] = 2;
+        global.roomPath[roomX, roomY+1] = 3;
+    }
+    else
+    {
+        global.endRoomX = roomX;
+        global.endRoomY = roomY;
+    }
 }
 
 // City of Gold
@@ -132,18 +121,18 @@ if (global.cityOfGold) global.roomPath[rand(0,3), 2] = 6;
 if (global.levelType == 0)
 {
     len = 0;
-    for (i = 0; i < 4; i += 1)
+    for (x = 0; x < 4; x += 1)
     {
-        if (global.roomPath[i,1] == 0 and global.roomPath[i,2] == 0 and (global.roomPath[i,0] or global.roomPath[i,3]))
+        if (global.roomPath[x,1] == 0 and global.roomPath[x,2] == 0 and (global.roomPath[x,0] or global.roomPath[x,3]))
         {
-            snakePitX[len] = i;
+            snakePitX[len] = x;
             len += 1;
         }
     }
     if (len > 0)
     {
         n = rand(1,global.probSnakePit);
-        if (n <= len)
+        if (n <= len - 1)
         {
             n = snakePitX[n];
             if (global.roomPath[n,0] == 0)
@@ -211,11 +200,11 @@ else if (global.levelType == 2)
 else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
 {
     len = 0;
-    for (i = 0; i < 4; i += 1)
+    for (x = 0; x < 4; x += 1)
     {
-        if(global.roomPath[i,1] == 0 and global.roomPath[i,2] == 0 and global.roomPath[i,3] == 0 and global.roomPath[i,4] == 0)
+        if(global.roomPath[x,1] == 0 and global.roomPath[x,2] == 0 and global.roomPath[x,3] == 0 and global.roomPath[x,4] == 0)
         {
-            sacPossX[len] = i;
+            sacPossX[len] = x;
             len += 1;
         }
     }
@@ -237,39 +226,42 @@ else if (global.levelType == 3 and rand(1,global.probSacPit) <= 3)
 if (rand(1,global.currLevel) <= 2 and global.currLevel > 1 and not global.madeBlackMarket)
 {
     len = 0;
-    for (k = 0; k < 4; k += 1)
+    for (y = 0; y < 4; y += 1)
     {
-        for (j = 0; j < 4; j += 1)
+        for (x = 0; x < 4; x += 1)
         {
-            global.roomPoss[j,k] = 0;
-            if (global.roomPath[j,k] == 0)
+            if (global.roomPath[x,y] != 0)
             {
-                if (j < 3)
+                shop = false;
+                if (x != 3)
                 {
-                    if (global.roomPath[j+1,k] == 1 or global.roomPath[j+1,k] == 2)
+                    if (global.roomPath[x+1,y] == 1 or global.roomPath[x+1,y] == 2)
                     {
-                        shopX[len] = j;
-                        shopY[len] = k;
-                        shopPath[j,k] = 4;
-                        len += 1;
+                        shopDirection[len] = 4;
+                        shop = true;
+                    }    
+                }
+                if (not shop and x != 0)
+                {
+                    if (global.roomPath[x-1,y] == 1 or global.roomPath[x-1,y] == 2)
+                    {
+                        shopDirection[len] = 5;
+                        shop = true;
                     }
                 }
-                if (j > 0)
+                if (shop)
                 {
-                    if (global.roomPath[j-1,k] == 1 or global.roomPath[j-1,k] == 2)
-                    {
-                        shopX[len] = j;
-                        shopY[len] = k;
-                        shopPath[j,k] = 5;
-                        len += 1;
-                    }
+                    shopX[len] = x;
+                    shopY[len] = y;
+                    len += 1;
                 }
             }
         }
     }
     if (len > 0) {
         n = rand(0, len-1);
-        global.roomPath[shopX[n],shopY[n]] = shopPath[shopX[n],shopY[n]];
+        global.roomPath[shopX[n],shopY[n]] = 4;
+        global.shopFacing = shopDirection[n];
         global.shop = true;
     }
 }

@@ -23,4 +23,6 @@
   <resource name="rand" type="RESOURCE"/>
   <resource name="string_replace_at" type="RESOURCE"/>
   <resource name="string_reverse" type="RESOURCE"/>
+  <resource name="debug_log" type="RESOURCE"/>
+  <resource name="debug_log_roomPath" type="RESOURCE"/>
 </resources>

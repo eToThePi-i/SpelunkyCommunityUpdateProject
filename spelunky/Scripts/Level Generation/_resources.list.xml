@@ -18,6 +18,7 @@
   <resource name="scrRoomGenEntrance" type ="RESOURCE"/>
   <resource name="scrRoomGenExit" type ="RESOURCE"/>
   <resource name="scrRoomGenShop" type ="RESOURCE"/>
+  <resource name="scrReflectLevel" type ="RESOURCE"/>
   <resource name="scrGenerateObstacles" type="RESOURCE"/>
   <resource name="scrGenerateTiles" type="RESOURCE"/>
   <resource name="scrGetName" type="RESOURCE"/>

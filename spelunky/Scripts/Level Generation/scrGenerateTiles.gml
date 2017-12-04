@@ -329,7 +329,7 @@ for (j = 0; j < 8; j += 1)
         }
         else if (tile == "Q")
         {
-            if (shopType == "Craps") tile_add(bgDiceSign, 0, 0, 48, 32, xpos, ypos, 9004);
+            if (shopType == "Craps") tile_add(bgDiceSign, 0, 0, 48, 32, xpos-16, ypos, 9004);
         }
         else if (tile == "R")
         {
@@ -389,6 +389,7 @@ for (j = 0; j < 8; j += 1)
         {
             if (global.murderer or global.thiefLevel > 0)
             {
+                if (global.shopFacing == 5) xpos -= 16;
                 if (global.isDamsel) tile_add(bgWanted, 32, 0, 32, 32, xpos, ypos, 9004);
                 else if (global.isTunnelMan) tile_add(bgWanted, 64, 0, 32, 32, xpos, ypos, 9004);
                 else tile_add(bgWanted, 0, 0, 32, 32, xpos, ypos, 9004);

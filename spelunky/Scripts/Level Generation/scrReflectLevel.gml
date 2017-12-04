@@ -8,7 +8,7 @@ strTemp = argument0;
 for (i = 1; i <= string_length(strTemp); i += 10)
 {
     temp = string_copy(strTemp, i, 10);
-    strTemp = string_replace_at(strTemp, reverse_string(temp), i);
+    strTemp = string_replace_at(strTemp, string_reverse(temp), i);
 }
 
 return strTemp;
