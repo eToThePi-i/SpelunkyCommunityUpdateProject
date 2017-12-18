@@ -91,15 +91,15 @@ for (roomY = 0; roomY < 4; roomY += 1)
             else dropX = (roomX - 2) * -3;
         }
     }
-    if(roomX != dropX)
+    if (roomX != dropX)
     {
         if (roomX > dropX)
         {
-            for(x = roomX - 1; x > dropX; x -= 1) roomPath[x,roomY] = 1;
+            for (x = roomX - 1; x > dropX; x -= 1) global.roomPath[x,roomY] = 1;
         }
         else
         {
-            for(x = roomX + 1; x < dropX; x += 1) roomPath[x,roomY] = 1;
+            for (x = roomX + 1; x < dropX; x += 1) global.roomPath[x,roomY] = 1;
         }
     }
     roomX = dropX;

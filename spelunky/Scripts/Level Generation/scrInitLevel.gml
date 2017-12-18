@@ -28,6 +28,9 @@ else if (global.currLevel <= 12) global.levelType = 2;
 else if (global.currLevel <= 15) global.levelType = 3;
 else global.levelType = 4;
 
+//debug_log("global.currLevel = " + string(global.currLevel)); //SCUP
+//debug_log("global.levelType = " + string(global.levelType));
+
 if (global.currLevel <= 1 or
     global.currLevel == 5 or
     global.currLevel == 9 or
@@ -130,6 +133,9 @@ global.temp1 = global.gameStart;
 
 // this is used to determine the path to the exit (generally no bombs required)
 scrLevelGen();
+
+//date = date_current_datetime(); //SCUP
+//file_rename("debug\debug.txt","debug\" + string(date_get_year(date)) + "-" + string(date_get_month(date)) + "-" + string(date_get_day(date)) + "_" + string(date_get_hour(date)) + "." + string(date_get_minute(date)) + "." + string(date_get_second(date)) + ".txt");
 
 global.cemetary = false;
 if (global.levelType == 1 and rand(1,global.probCemetary) == 1) global.cemetary = true;
